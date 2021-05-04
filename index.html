@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" , initial-scale=1>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">  
+  <title>CLSS Web Application</title>
+
+  <style>
+    .myMap {
+        height: 100%;
+    }
+  </style>
+
+    <!-- Configure dojo for asynchronous module loading -->
+    <script>
+        var dojoConfig = {
+        async: true,
+        packages: [{
+          name: "application",
+          location: '/js'
+        }]
+      };
+    </script>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.18/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="css/app.css"/>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.18/"></script>
+    <!--<script src="js/map.js"></script>-->
+    <script src="js/map.js"></script>
+    
+    <script type="text/javascript">
+      require([
+        "dojo/parser",
+        "application/main",
+      ], function (
+        parser,
+        Main
+      ) {
+        //parser.parse();
+        var myApp = new Main();
+      })
+
+    </script>
+    
+</head>
+
+<body class="app-loading">
+
+  <div class="loading-indicator" role="presentation">
+    <div class="loading-message" id="loading_message"></div>
+  </div>
+
+  <div
+    class="myMap"
+    id="clssWebMap"
+    is="lsr-map"
+    rv-config="clss-config.json"
+    lsr-langs='["en-CA", "fr-CA"]'
+    lsr-plugins="clssWebMap"
+    data-dojo-type="dijit/layout/BorderContainer"
+    data-dojo-props="design:'headline', liveSplitters:'true'">
+
+    <div class="container">
+      <div id="tableDiv"> </div>
+    </div>
+    <div id="panelTop" class="bg shadow">
+      <div id="panelTitle">
+        <header class="fc" id="panelText" role="banner" style="float:left">
+          <hgroup>
+            <h1 id="title">CLSS Map Browser</h1>
+          </hgroup>
+        </header>
+        <div id="panelMenu" class="icon-menu icon-color"></div>
+      </div>
+      
+      <div role="toolbar" id="panelTools">
+        <div id="home" class="icon-menu icon-color"></div>
+        <div id="locate" class="icon-menu icon-color"></div>
+        <div id="fullscreen" class="icon-menu icon-color"></div>
+        <div id="basemapGallery" class="icon-menu icon-color"></div>
+      </div>
+    </div>
+  </div>
+  
+ 
+  
+
+  <div id="toolbarDiv" class="esri-component esri-widget">
+    <button
+      id="distance"
+      class="esri-widget--button esri-interactive esri-icon-measure-line"
+      title="Distance Measurement Tool">
+    </button>
+    <button
+      id="area"
+      class="esri-widget--button esri-interactive esri-icon-measure-area"
+      title="Area Measurement Tool">
+    </button>
+    <button
+      id="clear"
+      class="esri-widget--button esri-interactive esri-icon-trash"
+      title="Clear Measurements">
+    </button>
+  </div>
+
+</body>
+</html>
